@@ -3,10 +3,13 @@
  */
 import { combineReducers } from 'redux'
 import table from './tableReducer.js'
-
+import login from './loginReducer'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
 const referentielApp = combineReducers({
-    table
+    table,
+    login,
+    routing: routerReducer
 })
 
 export default referentielApp

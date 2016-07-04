@@ -1,0 +1,12 @@
+/*Footer CSS*/
+#footer {
+    background: #3c8dbc;
+    margin-top: -20px;
+    margin-left: 230px;
+}
+
+#footer > .container {
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}

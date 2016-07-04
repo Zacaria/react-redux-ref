@@ -1,0 +1,71 @@
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+    width:100%;
+    position:fixed;
+    top:0px;
+}
+.navbar-inverse{
+    background-color: #3c8dbc;
+}
+#onglet-portail {
+    margin: 7.5px 0px;
+    list-style: none;
+}
+
+.navbar-inverse > li > a {
+    color: #fff;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+#onglet-portail > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+    color: #fff;
+}
+@media (min-width: 768px) {
+    #onglet-portail {
+        float: left;
+        margin: 0;
+    }
+
+    #onglet-portail > li {
+        float: left;
+        text-decoration: none;
+    }
+
+    #onglet-portail > li > a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
+
+.navbar-inverse #onglet-portail > li > a:hover,
+.navbar-inverse #onglet-portail > li > a:focus {
+    background-color: #367fa9;
+}
+
+.navbar-inverse #onglet-portail > .selected > a,
+.navbar-inverse #onglet-portail > .selected > a:hover,
+.navbar-inverse #onglet-portail > .selected > a:focus {
+    background-color: #367fa9;
+}
+
+
+#onglet-portail > li > a:hover,
+#onglet-portail > li > a:focus {
+    text-decoration: none;
+}
+
+#onglet-portail > li > a {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}

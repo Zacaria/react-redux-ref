@@ -1,0 +1,119 @@
+body {
+    font-size: 12px;
+}
+
+input[type="radio"] {
+    margin: 0 10px 0 10px;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    padding: 4px;
+}
+
+.content {
+    margin-top: 60px;
+}
+
+table.tva {
+    width: 60%;
+}
+
+table.tva > tbody > tr > td > input,
+table.tva > tbody > tr > td > input.form-control,
+table.tva > tfoot > tr > td > input.form-control
+{
+    font-size: 12px;
+    padding: 4px;
+    height: 25px;
+}
+th > a {
+    display: block;
+}
+/* Get the entire panel-heading clickable*/
+
+.panel-clickable {
+    padding: 0 15px;
+}
+.panel-clickable > a {
+    padding: 10px 0;
+}
+
+.panel-clickable > a:hover {
+    text-decoration: none;
+}
+
+.panel-clickable > a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+
+/*  Chevron down & up for React Table */
+.reactable-header-sort-asc:after {
+    content:"\e114";
+    font-family:"Glyphicons Halflings";
+    line-height:1;
+    display:inline-block;
+    float : right;
+}
+.reactable-header-sort-desc:after {
+    content:"\e113";
+    font-family:"Glyphicons Halflings";
+    line-height:1;
+    display:inline-block;
+    float : right;
+}
+
+.reactable-header-sortable {
+    color: #367fa9;
+}
+.spinner {
+    margin: 100px auto;
+    width: 30px;
+    height: 30px;
+    position: relative;
+
+}
+
+.cube1, .cube2 {
+    background-color: #367fa9;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+    animation: sk-cubemove 1.8s infinite ease-in-out;
+}
+
+.cube2 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+@-webkit-keyframes sk-cubemove {
+    25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+    50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+    75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+    100% { -webkit-transform: rotate(-360deg) }
+}
+
+@keyframes sk-cubemove {
+    25% {
+        transform: translateX(42px) rotate(-90deg) scale(0.5);
+        -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+    } 50% {
+          transform: translateX(42px) translateY(42px) rotate(-179deg);
+          -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+      } 50.1% {
+            transform: translateX(42px) translateY(42px) rotate(-180deg);
+            -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+        } 75% {
+              transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+              -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+          } 100% {
+                transform: rotate(-360deg);
+                -webkit-transform: rotate(-360deg);
+            }
+}
