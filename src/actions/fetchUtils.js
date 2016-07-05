@@ -1,18 +1,20 @@
 import fetch from 'isomorphic-fetch'
 import * as  ACTIONS  from '../actionTypes/index.js'
+import {  browserHistory } from 'react-router'
+
 
 function handleResponse(response) {
     if (response.status == 200) {
         return response.json()
     }
-    throw new Error(formatErrorMessage(response))
+    throw Error(formatErrorMessage(response))
 }
 
 function handlePostResponse(response) {
     if (response.status == 200) {
         return;
     }
-    throw new Error(formatErrorMessage(response))
+    throw Error(formatErrorMessage(response))
 }
 
 
@@ -73,7 +75,6 @@ export function fetchDispatch(opts, us, pw) {
 }
 
 export function fetchLogin(opts, us, pw) {
-    console.log(us + pw);
     return (dispatch) => {
         dispatch({type: opts.types.request})
         var password = btoa(pw);
@@ -92,8 +93,10 @@ export function fetchLogin(opts, us, pw) {
         })
             .then(handlePostResponse)
             .then(() => {
+                console.log('try to push ')
                 const obj = {username: us, password: pw, isLogged: true}
-                return dispatch(Object.assign({type: opts.types.receive}, obj))
+                 dispatch(Object.assign({type: opts.types.receive}, obj))
+                browserHistory.push('/person');
             }).catch((error) => dispatch(errorLogin(error)))
     }
 }

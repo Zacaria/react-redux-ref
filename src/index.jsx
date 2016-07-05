@@ -1,11 +1,12 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
-import configureStore from './store/configureStore.prod.js'
-import PersonPage from './containers/PersonPage.js'
-import HeaderMenuCont from './containers/HeaderMenuCont'
-import { Router, Route, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import PersonRoute from './route/PersonRoute'
+import LoginPage from './containers/LoginPage'
+import App from './containers/App'
+import { Router, IndexRoute, Route, browserHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer, routerMiddleware, push  } from 'react-router-redux'
+import configureStore from './store/configureStore.dev.js'
 
 const initialAppState = {
     table: {
@@ -23,20 +24,19 @@ const initialAppState = {
     }
 
 };
-const store = configureStore(initialAppState)
-const history = syncHistoryWithStore(browserHistory, store)
+
+const middleware = routerMiddleware(browserHistory);
+
+const store = configureStore(initialAppState);
+
+const history = syncHistoryWithStore(browserHistory, store);
+store.dispatch(push('/person'))
 render(
     <Provider store={store}>
-        <div className="wrapper">
-        <HeaderMenuCont/>
-            <aside className="main-sidebar">
-                <section className="sidebar">
-
-                    <ul className="sidebar-nav">
-                        <li className="sidebar-brand">Factures</li></ul>
-                </section>
-            </aside>
-
-            <PersonPage/>
-</div>
+        <Router history={history}>
+            <Route path="/" component={App}>
+                <IndexRoute component={LoginPage} />
+                <Route path="person" component={PersonRoute}/>
+            </Route>
+        </Router>
     </Provider>, document.getElementById('mount-point'));

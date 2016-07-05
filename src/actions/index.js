@@ -1,6 +1,10 @@
 import * as actionTypes  from '../actionTypes'
 import tableActions from './tableActions'
 
+function resetErrorMessage () {
+    return { type: ACTIONS.RESET_ERROR_MESSAGE }
+}
 export {
-    tableActions
+    tableActions,
+    resetErrorMessage
 }
