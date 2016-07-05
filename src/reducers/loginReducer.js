@@ -1,4 +1,5 @@
 import * as actionTypes from '../actionTypes'
+import  {initialAppState} from '../constants'
 
 function handleLoginActions (state, action) {
     
@@ -14,10 +15,12 @@ function handleLoginActions (state, action) {
             };
         case actionTypes.LOGIN_FAILURE:
             return {
-                isLogged: false,
                 isLogging: false,
                 error: action.error
-            }
+            };
+        case actionTypes.LOGOUT:
+            return initialAppState;
+
         default:
             return state
     }

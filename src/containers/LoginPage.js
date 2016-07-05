@@ -1,7 +1,7 @@
 import React from 'react'
 import LoginForm from '../components/LoginForm.js'
 import {connect} from 'react-redux'
-import {tableActions} from '../actions/index.js'
+import {authentification} from '../actions/index.js'
 
 
 const mapStateToProps = (state) => {
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         login: (us, pw) => {
-            dispatch(tableActions.login(us, pw))
+            dispatch(authentification.login(us, pw))
         }
     }
 }

@@ -83,7 +83,7 @@ class PersonTable extends React.Component {
                     <tbody>
                     { data.map((person)=> {
                         return (
-                            <tr key={person['id']}>
+                            <tr key={person['id'] + person['dateEntree']}>
                                 {columns.map((column) => {
                                     const key = column.key;
                                     return (

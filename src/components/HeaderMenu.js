@@ -2,13 +2,6 @@ import React from 'react'
 
 class HeaderMenu extends React.Component {
 
-
-    onClickLogin() {
-
-        alert(React.findDOMNode(this.refs.usernameInput).value);
-    }
-
-
     staticRender() {
         return (
             <div className="navbar-header">
@@ -47,43 +40,24 @@ class HeaderMenu extends React.Component {
     }
 
     dynamicRender() {
-        if (this.props.isLogged) {
-            return (
-                <ul  className="nav navbar-nav navbar-right">
+        if (this.props.username == '') {
+            this.props.logout();
+            return;
+        }
+        return (
+            <ul className="nav navbar-nav navbar-right">
                 <li className="dropdown">
-                    <a href="#" data-toggle="dropdown" role="button" className="dropdown-toggle"><i className="glyphicon glyphicon-user"></i>
+                    <a href="#" data-toggle="dropdown" role="button" className="dropdown-toggle"><i
+                        className="glyphicon glyphicon-user"></i>
                         { this.props.username }</a></li>
                 <li>
-                  <a href="${ctx}/j_spring_logout"><i className="glyphicon glyphicon-lock"></i>
+                    <a onClick={e => {
+                        e.preventDefault();
+                        this.props.logout();}}><i className="glyphicon glyphicon-lock"></i>
                         Déconnexion</a>
                 </li>
-                </ul>
-            )
-        }
-        let inputUsername;
-        let inputPw;
-        return (
-            <ul  className="nav navbar-nav navbar-right">
-            <li className="dropdown">
-
-            <form
-                onSubmit={e => {
-        e.preventDefault();
-        if (!inputUsername.value.trim())
-          return;
-        this.props.login(inputUsername.value,inputPw.value)
-      }}>
-                <input ref={node => {
-          inputUsername = node
-        }} placeholder="Username"/>
-                <input ref={node => {
-          inputPw = node
-        }} placeholder="Mot de passe"/>
-                <button className="btn btn-default" type="submit">
-                    Connexion
-                </button>
-            </form>
-        </li></ul>)
+            </ul>
+        )
 
     }
 
@@ -93,7 +67,7 @@ class HeaderMenu extends React.Component {
                 <div className="container-fluid">
                     {this.staticRender()}
                     <div className="navbar-collapse collapse">
-                            {this.dynamicRender()}
+                        {this.dynamicRender()}
                     </div>
                     {this.props.error}
                 </div>

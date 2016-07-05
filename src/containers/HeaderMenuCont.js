@@ -4,8 +4,7 @@
 import React from 'react'
 import HeaderMenu from '../components/HeaderMenu.js'
 import {connect} from 'react-redux'
-import {tableActions} from '../actions/index.js'
-
+import {authentification} from '../actions/index.js'
 
 const mapStateToProps = (state) => {
     return {
@@ -17,8 +16,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (us, pw) => {
-            dispatch(tableActions.login(us, pw))
+        logout: () => {
+            dispatch(authentification.logout())
         }
     }
 }

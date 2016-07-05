@@ -1,5 +1,5 @@
 import * as actionTypes from '../actionTypes'
-import {fetchDispatch, fetchLogin} from './fetchUtils'
+import {fetchDispatch} from './fetchUtils'
 import * as constants from '../constants'
 
 const apiProps = {
@@ -7,14 +7,6 @@ const apiProps = {
     types: {
         request: actionTypes.LOAD_PERSON,
         receive: actionTypes.LOAD_PERSON_SUCCESS
-    }
-}
-
-const apiLogProps = {
-    url: constants.URL_LOGIN,
-    types: {
-        request: actionTypes.LOGIN,
-        receive: actionTypes.LOGIN_SUCCESS
     }
 }
 
@@ -30,13 +22,6 @@ function fetchData(us, pw) {
     }
 }
 
-function login(us, pw) {
-    return (dispatch) => {
-        return dispatch(fetchLogin(apiLogProps, us, pw))
-    }
-}
-
-
 function filterBy(filterString) {
     return {
         type: actionTypes.FILTER_PERSON,
@@ -51,6 +36,6 @@ function sortBy(sortKey) {
     }
 }
 
-export default {fetchData, filterBy, sortBy, login}
+export default {fetchData, filterBy, sortBy}
 
 
