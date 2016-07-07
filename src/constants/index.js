@@ -13,7 +13,8 @@ export const initialAppState = {
         isLogged: false,
         username:'',
         password:'',
-        isLogging: false
+        isLogging: false,
+        error: ''
     }
 
 };

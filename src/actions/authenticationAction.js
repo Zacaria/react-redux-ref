@@ -25,7 +25,7 @@ function logout(){
     browserHistory.push('/login')
     return {
         type: actionTypes.LOGOUT,
-        
+
     }
 }
 export default {login, logout}

@@ -1,32 +1,16 @@
-import {createStore, applyMiddleware, combineReducers, compose} from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import { routerReducer  } from 'react-router-redux'
-import table from '../reducers/tableReducer.js'
-import login from '../reducers/loginReducer'
+import {createStore, applyMiddleware} from 'redux';
+import reducers from '../reducers';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 import {initialAppState} from '../constants'
+import { browserHistory } from 'react-router'
 
-
-
-let createStoreWithMiddleware;
-
-// Configure the dev tools when in DEV mode
-createStoreWithMiddleware = compose(
-    applyMiddleware(thunkMiddleware),
-)(createStore);
-
-const appReducer =  combineReducers({
-  table,login,
-  routing: routerReducer
-})
-
-//a wrapper to reset the state in case of LOGOUT
-const rootReducer = (state, action) => {
-  if (action.type === 'LOGOUT') {
-    state = initialAppState
+const configureStore = () => {
+  const middlewares = [thunk];//, routerMiddleware(browserHistory)];
+  if (process.env.NODE_ENV !== 'production') {
+    middlewares.push(createLogger());
   }
-  return appReducer(state, action)
-}
+  return createStore(reducers, initialAppState, applyMiddleware(...middlewares));
+};
 
-export default function configureStore(initialState) {
-  return createStoreWithMiddleware(rootReducer, initialState);
-}
+export default configureStore;

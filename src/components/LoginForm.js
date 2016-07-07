@@ -7,6 +7,17 @@ let inputUsername;
 let inputPw;
 
 class LoginForm extends React.Component {
+    dynamicRender = () => {
+        if (this.props.isLogging) {
+            return ( <div className="spinner">
+                <div className="cube1"></div>
+                <div className="cube2"></div>
+            </div>);
+        }
+        if (this.props.error !== '') {
+            return ( <span className="error-message">{this.props.error}</span>);
+        }
+    };
 
     render() {
         return (
@@ -32,19 +43,20 @@ class LoginForm extends React.Component {
                                 <label>Password</label>
                                 <input className="form-control" ref={node => {
           inputPw = node
-        }} placeholder="Mot de passe" value="oduvoid"/></div>
+        }} placeholder="Mot de passe" type="password"/></div>
                             <div className="actions pull-right">
 
                                 <input className="btn btn-default" type="submit" value="Connexion"/></div>
 
 
                         </form>
-
+                        {this.dynamicRender()}
                     </div>
                 </div>
             </div>);
     }
 }
+
 
 
 export default LoginForm

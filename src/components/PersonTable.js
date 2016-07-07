@@ -113,7 +113,6 @@ PersonTable.propTypes = {
     filterBy: React.PropTypes.func.isRequired,
 
     // state data
-    data: React.PropTypes.array.isRequired,
     filterString: React.PropTypes.string.isRequired,
     sortKey: React.PropTypes.string.isRequired,
     sortDesc: React.PropTypes.bool.isRequired,

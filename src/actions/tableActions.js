@@ -8,7 +8,7 @@ const apiProps = {
         request: actionTypes.LOAD_PERSON,
         receive: actionTypes.LOAD_PERSON_SUCCESS
     }
-}
+};
 
 function shouldFetchData({table}) {
     return (!table.data || !table.isFetching)

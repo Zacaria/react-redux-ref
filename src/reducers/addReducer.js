@@ -1,5 +1,8 @@
 import * as actionTypes from '../actionTypes'
 import  {initialAppState} from '../constants'
+/**
+ * Created by chjourdain on 07/07/16.
+ */
 
 function handleLoginActions (state, action) {
 

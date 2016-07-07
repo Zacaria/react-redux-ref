@@ -1,19 +1,5 @@
 import * as actionTypes from '../actionTypes'
 
-export function listPerson (data) {
- /* const foods = data.report.foods;
-
-  return foods.reduce((arr, food) => {
-    food.nutrients.forEach((nutrient) => {
-      nutrient.food = food.name
-    });
-    return arr.concat(food.nutrients)
-
-  }, [])*/
-
-  return  Object.keys(data).map(key => data[key]);
-}
-
 function handleTableActions (state, action) {
   switch (action.type) {
     case actionTypes.LOAD_PERSON:
@@ -21,7 +7,7 @@ function handleTableActions (state, action) {
     case actionTypes.LOAD_PERSON_SUCCESS:
       return {
         isFetching: false,
-        data: action.data
+        data: action.response
       };
     case actionTypes.FILTER_PERSON:
       return { filterString: action.filterString.toLowerCase() };

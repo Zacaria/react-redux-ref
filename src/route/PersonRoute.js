@@ -1,9 +1,10 @@
 /**
  * Created by excilys on 04/07/16.
  */
-import React from 'react'
-import PersonPage from '../containers/PersonPage.js'
-import HeaderMenuCont from '../containers/HeaderMenuCont'
+import React from 'react';
+import PersonPage from '../containers/PersonPage.js';
+import HeaderMenuCont from '../containers/HeaderMenuCont';
+import {Link} from 'react-router';
 
 class PersonRoute extends React.Component {
 
@@ -15,7 +16,9 @@ class PersonRoute extends React.Component {
                 <aside className="main-sidebar">
                     <section className="sidebar">
                         <ul className="sidebar-nav">
-                            <li className="sidebar-brand">Factures</li>
+                            <li className="sidebar-brand">Personne</li>
+                            <li><Link to='/add'>Ajout </Link></li>
+                            <li><Link to='/person'>Liste </Link></li>
                         </ul>
                     </section>
                 </aside>
