@@ -2,6 +2,8 @@
  * Created by excilys on 04/07/16.
  */
 import React from 'react'
+import Form from './Form/Form'
+import Input from './Form/Input'
 import {IndexLink, Link} from 'react-router'
 let inputUsername;
 let inputPw;
@@ -23,9 +25,11 @@ class LoginForm extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-xs-8 col-xs-offset-1 box">
-                        <form className="form-horizontal"
-                              onSubmit={e => {
+                    <div className="col-xs-8 col-xs-offset-2 box">
+
+                        <fieldset>
+          /**                  <form className="form-horizontal"
+                                  onSubmit={e => {
         e.preventDefault();
         if (!inputUsername.value.trim())
           return;
@@ -33,30 +37,47 @@ class LoginForm extends React.Component {
       }}>
 
 
-                            <div className="form-group">
-                                <label>Username</label>
-                                <input className="form-control" ref={node => {
+                                <div className="form-group">
+                                    <h1>Username</h1>
+                                    <input className="form-control" ref={node => {
           inputUsername = node
         }} placeholder="Username" value="oduvoid"/></div>
 
-                            <div className="form-group">
-                                <label>Password</label>
-                                <input className="form-control" ref={node => {
+                                <div className="form-group">
+                                    <h2>Password</h2>
+                                    <input className="form-control" ref={node => {
           inputPw = node
         }} placeholder="Mot de passe" type="password"/></div>
-                            <div className="actions pull-right">
+                                <div className="actions pull-right">
 
-                                <input className="btn btn-default" type="submit" value="Connexion"/></div>
+                                    <input className="btn btn-default" type="submit" value="Connexion"/></div>
 
 
-                        </form>
+                            </form>**/
+
+                          <Form onValidSubmit={(values) => console.log(values)}>
+                              <Input
+                              label="Username"
+                              name="username"
+                              validation={["require"]}
+                              
+                              />
+                              <input className="btn btn-default"
+                                     type="submit"
+                                     value="Connexion"
+
+                              />
+                          </Form>
+
+
+
+                        </fieldset>
                         {this.dynamicRender()}
                     </div>
                 </div>
             </div>);
     }
 }
-
 
 
 export default LoginForm

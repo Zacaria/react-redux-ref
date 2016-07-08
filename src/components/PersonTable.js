@@ -52,21 +52,33 @@ class PersonTable extends React.Component {
         return this
     }
 
+    errorMessageRender() {
+        if (this.props.error !== '') {
+            return (
+                <div class="alert alert-danger">
+                    {this.props.error}
+                </div>)
+        }
+    }
+
+
     render() {
-        if (!this.props.isLogged) return(  <section className="content"><div>Please connect</div></section>);
+        if (this.props.username == '') {
+            this.props.logout();
+        }
         const {isFetching, filterString} = this.props;
         console.log('in render of PersonTable');
         const data = this.sortData().filterData();
         //const data = this.props.data;
         return (
             <section className="content">
-
-            <div>
-                <input className='filter-input' value={filterString}
+                  <div className="row"><div className="col-lg-4">  <div className="form-group">
+                        <label>Filtre</label>
+                <input className='form-control filter-input' value={filterString}
                        onChange={::this.handleFilterStringChange}
                        type='text' placeholder='Filter Rows'
                        autoCorrect='off' autoCapitalize='off' spellCheck='false'/>
-                <br />
+                </div></div></div><br />
 
                 <table className="t table table-striped table-bordered table-hover">
                     <thead>
@@ -101,7 +113,7 @@ class PersonTable extends React.Component {
                 </div>}
                 {!isFetching && data.length === 0 &&
                 <h4 className='center'>Aucun résultat</h4>}
-            </div></section>
+            </section>
         )
     }
 }

@@ -12,7 +12,8 @@ const mapStateToProps = (state) => {
         isFetching: state.table.isFetching,
         isLogged: state.login.isLogged,
         username: state.login.username,
-        password: state.login.password
+        password: state.login.password,
+        error: state.login.error
     }
 };
 const mapDispatchToProps = (dispatch) => {
@@ -25,6 +26,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         fetchData: (us, pw) => {
             dispatch(tableActions.fetchData(us, pw))
+        },
+        logout: () => {
+            dispatch(authentification.logout())
         }
     }
 };

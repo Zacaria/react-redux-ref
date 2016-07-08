@@ -3,12 +3,21 @@ import * as actionTypes from '../actionTypes'
 function handleTableActions (state, action) {
   switch (action.type) {
     case actionTypes.LOAD_PERSON:
-      return { isFetching: true };
+      return {
+        isFetching: true,
+        error:''
+      };
     case actionTypes.LOAD_PERSON_SUCCESS:
       return {
         isFetching: false,
-        data: action.response
+        data: action.response,
+        error: ''
       };
+    case actionTypes.LOAD_PERSON_FAILURE:
+          return {
+            isFetching: false,
+            error: action.error
+          }
     case actionTypes.FILTER_PERSON:
       return { filterString: action.filterString.toLowerCase() };
     case actionTypes.SORT_PERSON:
