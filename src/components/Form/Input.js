@@ -13,6 +13,7 @@ class Input extends React.Component {
         super(props);
         this.getValue = this.getValue.bind(this);
         this.getInputDOMNode = this.getInputDOMNode.bind(this);
+        this.validate = this.validate.bind(this);
         this.state = {
             classCss: 'form-group',
             error: [],
@@ -27,7 +28,6 @@ class Input extends React.Component {
                 var array = this.state.validationfct.slice();
                 array.push(this.isRequired);
                 this.setState({validationfct: array})
-
             }
         })
     }
@@ -50,17 +50,19 @@ class Input extends React.Component {
         )
         if (errortmp.length > 0) {
             this.setState({classCss: 'form-group has-error', error: errortmp})
+            return false;
         } else {
             this.setState({error: errortmp, classCss: 'form-group'})
+            return true;
         }
     }
 
     isRequired(value, errortmp) {
-        if (!value.trim()) {
+        if (!value.trim() && ( errortmp.indexOf('require') >= -1)) {
             errortmp.push('require')
         } else {
             var index = errortmp.indexOf('require');
-            if (index > -1) {
+            if (index >= -1) {
                 errortmp.splice(index, 1);
             }
         }

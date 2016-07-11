@@ -12,14 +12,11 @@ export default class Form extends React.Component {
 
     registerInput(input) {
         let type = input.props.type;
-        
         let name = input.props.name;
-
         if (!name) {
             throw new Error('Input ' + input + ' has no "name" prop');
         }
-            this._inputs[name] = input;
-
+        this._inputs[name] = input;
     }
 
     render() {
@@ -35,7 +32,6 @@ export default class Form extends React.Component {
     getValues() {
         return Object.keys(this._inputs).reduce((values, name) => {
             values[name] = this._getValue(name);
-
             return values;
         }, {});
     }
@@ -44,9 +40,7 @@ export default class Form extends React.Component {
         if (typeof children !== 'object' || children === null) {
             return children;
         }
-
         let childrenCount = React.Children.count(children);
-
         if (childrenCount > 1) {
             return React.Children.map(children, child => this._renderChild(child));
         } else if (childrenCount === 1) {
@@ -71,31 +65,35 @@ export default class Form extends React.Component {
                 throw new Error('Can not add input without "name" attribute');
             }
             let newProps = {
-                _registerInput  : this.registerInput.bind(this),
+                _registerInput: this.registerInput.bind(this),
             };
-
             return React.cloneElement(child, newProps);
-    }
+        }
         else {
-            return React.cloneElement(child, {}, this._renderChildren(child.props && child.props.children));}}
+            return React.cloneElement(child, {}, this._renderChildren(child.props && child.props.children));
+        }
+    }
+
+    _validateAll() {
+        let valid = true;
+        Object.keys(this._inputs).forEach((name)=> valid= valid && this._inputs[name].validate()
+        )
+        return valid;
+    }
 
     _getValue(iptName) {
         let input = this._inputs[iptName];
-
         if (Array.isArray(input)) {
             console.warn('Multiple inputs use the same name "' + iptName + '"');
 
             return false;
         }
-
         let value;
-
         if (input.props.type === 'checkbox') {
             value = input.getChecked();
         } else {
             value = input.getValue();
         }
-
         return value;
     }
 
@@ -103,15 +101,10 @@ export default class Form extends React.Component {
         if (e) {
             e.preventDefault();
         }
-console.log(this._inputs)
+        console.log(this._inputs)
         let values = this.getValues();
-
-       // let { isValid, errors } = this._validateAll(values);
-
-      //  if (isValid) {
-            this.props.onValidSubmit(values);
-    //    } else {
-      //      this.props.onInvalidSubmit(errors, values);
-      //  }
+        if (this._validateAll()) {
+            this.props.onSubmit(values);
+        }
     }
 }

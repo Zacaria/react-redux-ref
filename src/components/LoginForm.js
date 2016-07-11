@@ -55,12 +55,12 @@ class LoginForm extends React.Component {
 
                             </form>**/
 
-                          <Form onValidSubmit={(values) => console.log(values)}>
+                          <Form onSubmit={(values) => console.log(values)}>
                               <Input
                               label="Username"
                               name="username"
                               validation={["require"]}
-                              
+                              ref="username"
                               />
                               <input className="btn btn-default"
                                      type="submit"
