@@ -1,5 +1,7 @@
 export const URL_PERSON = 'https://maestrodev.excilys.com/maestro-ref/rest/person';
 export const URL_LOGIN = 'https://maestrodev.excilys.com/maestro-ref/rest/login';
+export const URL_SOCIETE = 'https://maestrodev.excilys.com/maestro-ref/rest/societes';
+
 
 export const initialAppState = {
     table: {
@@ -15,6 +17,11 @@ export const initialAppState = {
         password:'',
         isLogging: false,
         error: ''
+    },
+    add: {
+        listSociete: {}
+    },
+    edit: {
+        personData: {}
     }
-
 };

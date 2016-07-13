@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router';
 
 // Stateless cell components for Table component
 
@@ -95,13 +96,15 @@ class PersonTable extends React.Component {
                     <tbody>
                     { data.map((person)=> {
                         return (
+
                             <tr key={person['id'] + person['dateEntree']}>
+
                                 {columns.map((column) => {
                                     const key = column.key;
                                     return (
-                                        <td>{person[key]}</td>)
+                                        <td> <Link to={"/edit/"+person['id']}>{person[key]}</Link></td>)
                                 })}
-                            </tr>)
+                                </tr>)
                     })
                     }
                     </tbody>

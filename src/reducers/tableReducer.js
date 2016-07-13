@@ -2,18 +2,18 @@ import * as actionTypes from '../actionTypes'
 
 function handleTableActions (state, action) {
   switch (action.type) {
-    case actionTypes.LOAD_PERSON:
+    case actionTypes.LOAD_PERSONS:
       return {
         isFetching: true,
         error:''
       };
-    case actionTypes.LOAD_PERSON_SUCCESS:
+    case actionTypes.LOAD_PERSONS_SUCCESS:
       return {
         isFetching: false,
         data: action.response,
         error: ''
       };
-    case actionTypes.LOAD_PERSON_FAILURE:
+    case actionTypes.LOAD_PERSONS_FAILURE:
           return {
             isFetching: false,
             error: action.error

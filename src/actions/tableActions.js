@@ -5,8 +5,9 @@ import * as constants from '../constants'
 const apiProps = {
     url: constants.URL_PERSON,
     types: {
-        request: actionTypes.LOAD_PERSON,
-        receive: actionTypes.LOAD_PERSON_SUCCESS
+        request: actionTypes.LOAD_PERSONS,
+        receive: actionTypes.LOAD_PERSONS_SUCCESS,
+        error: actionTypes.LOAD_PERSONS_FAILURE
     }
 };
 

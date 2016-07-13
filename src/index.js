@@ -8,6 +8,7 @@ import { Router, IndexRoute, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './store/configureStore.dev.js'
 import PersonForm from './containers/PersonForm'
+import EditPersonPage from './containers/EditPersonPage'
 const store = configureStore();
 
 const history = syncHistoryWithStore(browserHistory, store);
@@ -20,6 +21,7 @@ render(
                 <Route path="person" component={PersonRoute} />
                 <Route path="login" component={LoginPage} />
                 <Route path="add" component={PersonForm} />
+                <Route path="edit/(:id)" component={EditPersonPage} />
             </Route>
         </Router>
     </Provider>, document.getElementById('mount-point'));

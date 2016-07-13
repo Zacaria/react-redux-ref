@@ -76,7 +76,8 @@ export default class Form extends React.Component {
 
     _validateAll() {
         let valid = true;
-        Object.keys(this._inputs).forEach((name)=> valid= valid && this._inputs[name].validate()
+        Object.keys(this._inputs).forEach((name)=>{
+            valid= this._inputs[name].validate() && valid;}
         )
         return valid;
     }
@@ -91,17 +92,19 @@ export default class Form extends React.Component {
         let value;
         if (input.props.type === 'checkbox') {
             value = input.getChecked();
+        } else if (input.props.type === 'selected' ){
+            value = input.getSelectedOptions();
         } else {
             value = input.getValue();
         }
         return value;
     }
+    
 
     _handleSubmit(e) {
         if (e) {
             e.preventDefault();
         }
-        console.log(this._inputs)
         let values = this.getValues();
         if (this._validateAll()) {
             this.props.onSubmit(values);

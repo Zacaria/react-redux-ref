@@ -7,25 +7,18 @@ import  {initialAppState} from '../constants'
 function handleLoginActions (state, action) {
 
     switch (action.type) {
-        case actionTypes.LOGIN:
-            return { isLogging: true };
-        case actionTypes.LOGIN_SUCCESS:
+     
+        case actionTypes.FETCH_SOCIETE:
+            return {isFetchingSociete: true}
+        case actionTypes.FETCH_SOCIETE_SUCCESS:
             return {
-                isLogged: action.isLogged,
-                username: action.username,
-                password: action.password,
-                isLogging: false
+                listSociete: action.response,
+                isFetchingSociete: false
             };
-        case actionTypes.LOGIN_FAILURE:
-            return {
-                isLogging: false,
-                error: action.error
-            };
-        case actionTypes.LOGOUT:
-            return initialAppState;
-
+        case actionTypes.FETCH_SOCIETE_FAILURE:
+            return {isFetchingSociete: false}
         default:
-            return state
+            return state.add
     }
 }
 

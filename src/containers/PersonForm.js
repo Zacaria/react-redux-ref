@@ -1,8 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import HeaderMenuCont from '../containers/HeaderMenuCont';
+import SideMenu from '../components/SideMenu'
 import {addPerson} from '../actions';
-
+import Form from '../components/Form/Form';
+import Input from '../components/Form/Input';
+import * as actions from '../actions'
 
 /**
  * Created by chjourdain on 07/07/16.
@@ -13,98 +16,95 @@ class PersonForm extends React.Component {
         super(props);
     }
 
+    componentWillMount() {
+            this.props.fetchSociete(this.props.username, this.props.password)
+    }
+
     render() {
-        let civilite;
-        let nom;
-        let prenom;
-        let matricule;
-        let lieSecuAdmin = false;
-        let qualite;
-        let societeId;
+        console.log('in render PersonForm')
         return (
             <div className="wrapper">
                 <HeaderMenuCont/>
-                <aside className="main-sidebar">
-                    <section className="sidebar">
-                        <ul className="sidebar-nav">
-                            <li className="sidebar-brand">Factures</li>
-                        </ul>
-                    </section>
-                </aside>
+                <SideMenu />
                 <section className="content">
-                    <div>
-                        <form
-                            onSubmit={e => {
-          e.preventDefault();
-          this
-            .props
-            .dispatch(addPerson(this.props.username, this.props.password,
-            {
-                "civilite": civilite.value,
-                "nom": nom.value,
-                "prenom": prenom.value,
-                "matricule": matricule.value,
-                "lieSecuAdmin": lieSecuAdmin,
-                "qualite": qualite.value,
-
-                'contact': {},
-                'adresseCorrespondance': {},
-'adresseResidence': {},
-                 "societe": {
-                    'id': societeId.value,
-                    'nom': 'test',
-                    'entree': '29/03/1992'
-                }
-            }));
-        }}>
-                            <div className="form-group">
-                                <label>Civilité</label>
-                                <select className="form-control" ref={node => { civilite = node }}>
+                    <div className="row">
+                        <div className="col-lg-3"/>
+                        <div className="col-lg-6">
+                            <Form
+                                onSubmit={values => {
+                                                values.societe={
+                                        'id': values.societeid,
+                                        'nom': 'test',
+                                        'entree': '29/03/1992'
+                                    };
+                                    values.contact = {};
+                                    delete values['societeid'];
+                                    values.adresseCorrespondance= {};
+                                    values.adresseResidence= {};
+                              this
+                                .props
+                                .dispatch(addPerson(this.props.username, this.props.password, values));
+                            }}>
+                                <Input type="select"
+                                       label="Civilité"
+                                       name="civilite"
+                                >
                                     <option value="">Sélectionner une civilité</option>
                                     <option value="M">M</option>
                                     <option value="Mme">Mme</option>
                                     <option value="Mlle">Mlle</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <label>Nom</label>
-                                <input className="form-control" ref={node => { nom = node }}/>
-                            </div>
-                            <div className="form-group">
-                                <label>Prénom</label>
-                                <input className="form-control" ref={node => { prenom = node }}/>
-                            </div>
+                                </Input>
 
-                            <div className="form-group">
-                                <label>Société</label>
-                                <select className="form-control" ref={node => { societeId = node }}>
-                                    <option value="">Sélectionner une société</option>
-                                    <option value="1">eBusiness Information</option>
-                                    <option value="2">Altendis</option>
-                                </select></div>
 
-                            <div className="form-group">
-                                <label>Matricule</label>
-                                <input className="form-control" ref={node => { matricule = node }}/>
-                            </div>
-
-                            <div className="form-group">
-                                <label>lieSecuAdmin</label>
-
-                                <input type="checkbox"
-                                       defaultChecked={lieSecuAdmin}
-                                       onChange={() => (lieSecuAdmin= !lieSecuAdmin)}
+                                <Input
+                                    label="Nom"
+                                    name="nom"
+                                    validation={["require"]}
                                 />
-                            </div>
-                            <div className="form-group">
-                                <label>Poste</label>
-                                <input className="form-control" ref={node => { qualite = node }}/>
-                            </div>
 
-                            <button className="btn btn-primary" type="submit">
-                                Ajouter
-                            </button>
-                        </form>
+                                <Input
+                                    label="Prenom"
+                                    name="prenom"
+                                    validation={["require"]}
+                                />
+
+                                <Input
+                                    type="select"
+                                    className="form-control"
+                                    name="societeid"
+                                    label="Société"
+                                >
+                                    <option value="">Sélectionner une société</option>
+                                    {  Object.keys(this.props.listSociete).map(
+                                        (id) => {
+                                            return (<option value={id}>{this.props.listSociete[id]}</option>)
+                                        })}
+
+                                </Input>
+
+                                <Input
+                                    label="Matricule"
+                                    name="matricule"
+                                    validation={["require"]}
+                                />
+
+                                <Input
+                                    label="lieSecuAdmin"
+                                    type="checkbox"
+                                    name="lieSecuAdmin"
+                                    validation={[]}
+                                />
+
+                                <Input
+                                    label="Poste"
+                                    name="qualite"
+                                    validation={[]}
+                                />
+                                <button className="btn btn-primary" type="submit">
+                                    Ajouter
+                                </button>
+                            </Form>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -114,9 +114,18 @@ class PersonForm extends React.Component {
 const mapStateToProps = (state) => {
     return {
         username: state.login.username,
-        password: state.login.password
+        password: state.login.password,
+        listSociete: state.add.listSociete
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchSociete: (us, pw) => {
+            dispatch(actions.listSociete(us, pw))
+        }
     }
 };
 
-PersonForm = connect(mapStateToProps)(PersonForm);
+
+PersonForm = connect(mapStateToProps, mapDispatchToProps)(PersonForm);
 export default PersonForm;

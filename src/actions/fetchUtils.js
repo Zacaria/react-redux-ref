@@ -1,24 +1,26 @@
-import fetch from 'isomorphic-fetch'
-import * as  ACTIONS  from '../actionTypes/index.js'
-import {browserHistory} from 'react-router'
+import fetch from 'isomorphic-fetch';
+import * as ACTIONS from '../actionTypes/index.js';
+import {browserHistory} from 'react-router';
+
+function formatErrorMessage(res) {
+    return '[${res.status}]: ${res.statusText} (${res.url})';
+}
 
 function handleReturnResponse(response) {
-    if (response.status == 200) {
-        return response.json()
+    if (response.status === 200) {
+        return response.json();
     }
     throw Error(formatErrorMessage(response))
 }
 
 function handleResponse(response) {
-    if (response.status == 200) {
+    if (response.status === 200) {
         return;
     }
     throw Error(formatErrorMessage(response))
 }
 
-function formatErrorMessage(res) {
-    return `[${res.status}]: ${res.statusText} (${res.url})`
-}
+
 
 export function fetchDispatch(opts, us, pw) {
     return (dispatch) => {
@@ -43,7 +45,7 @@ export function fetchDispatch(opts, us, pw) {
                 },
                 error => {
                     dispatch({
-                        type: ACTIONS.LOAD_PERSON_FAILURE,
+                        type: opts.types.error,
                         error: error.message || 'Default error'
                     });
                 });
