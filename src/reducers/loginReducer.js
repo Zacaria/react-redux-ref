@@ -20,7 +20,6 @@ function handleLoginActions (state, action) {
             };
         case actionTypes.LOGOUT:
             return initialAppState;
-
         default:
             return state
     }
