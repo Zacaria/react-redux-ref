@@ -19,6 +19,7 @@ function handleLoginActions (state, action) {
                 error: action.error
             };
         case actionTypes.LOGOUT:
+            localStorage.removeItem('state');
             return initialAppState;
         default:
             return state

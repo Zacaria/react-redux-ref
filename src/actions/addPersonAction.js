@@ -1,5 +1,5 @@
 import * as actionTypes from '../actionTypes'
-import {fetchAdd, fetchDispatch} from './fetchUtils'
+import {fetchWithData, fetchDispatch} from './fetchUtils'
 import * as constants from '../constants'
 /**
  * Created by chjourdain on 07/07/16.
@@ -7,11 +7,13 @@ import * as constants from '../constants'
 
 const apiAddProps = {
     url: constants.URL_PERSON,
+    method: 'POST',
     types: {
         request: actionTypes.ADD_PERSON,
         receive: actionTypes.ADD_PERSON_SUCCESS,
         error: actionTypes.ADD_PERSON_FAILURE
-    }
+    },
+    redirectOnSuccess: '/person'
 }
 
 const apiSocieteProps = {
@@ -24,7 +26,7 @@ const apiSocieteProps = {
 }
 
 export const addPerson = (us, pw, person) => (dispatch) => {
-    return dispatch(fetchAdd(apiAddProps, us, pw, person))
+    return dispatch(fetchWithData(apiAddProps, us, pw, person))
 };
 
 

@@ -14,7 +14,6 @@ import throttle from 'lodash/throttle';
 
 const store = configureStore();
 
-
 store.subscribe(throttle(() => {
     saveState({
         login: store.getState().login

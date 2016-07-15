@@ -87,8 +87,8 @@ class PersonTable extends React.Component {
                         {  columns.map((column)=> {
                             const selected = (column.key === this.props.sortKey)? (this.props.sortDesc) ? 'reactable-header-sort-desc':'reactable-header-sort-asc' : ''
                             const clickFunc = () => this.props.sortBy(column.key);
-                            if(column.sort){return <th><a className={selected} onClick={clickFunc}>{column.label}</a></th>}
-                            return <th>{column.label}</th>
+                            if(column.sort){return <th key={"thkey"+column.label}><a className={selected} onClick={clickFunc}>{column.label}</a></th>}
+                            return <th key={"thkey"+column.label}>{column.label}</th>
                         })
                         }
                     </tr>

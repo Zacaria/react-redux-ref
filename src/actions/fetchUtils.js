@@ -21,7 +21,6 @@ function handleResponse(response) {
 }
 
 
-
 export function fetchDispatch(opts, us, pw) {
     return (dispatch) => {
         dispatch({type: opts.types.request})
@@ -77,19 +76,19 @@ export function fetchLogin(opts, us, pw) {
                 },
                 error => {
                     dispatch({
-                        type: ACTIONS.LOGIN_FAILURE,
+                        type: opts.types.error,
                         error: error.message || 'Default error'
                     });
                 });
     };
 }
 
-export function fetchAdd(opts, us, pw, person) {
+export function fetchWithData(opts, us, pw, data) {
     return (dispatch) => {
         dispatch({type: opts.types.request})
         var password = btoa(pw);
         return fetch(opts.url, {
-            method: 'POST',
+            method: opts.method,
             mode: 'cors',
             headers: new Headers({
                 "Access-Control-Allow-Origin": "*",
@@ -98,17 +97,19 @@ export function fetchAdd(opts, us, pw, person) {
                 "password": password
 
             }),
-            body: JSON.stringify(person)
+            body: JSON.stringify(data)
         })
             .then(handleResponse)
             .then(() => {
                     const obj = {username: us, password: pw, isLogged: true};
                     dispatch(Object.assign({type: opts.types.receive}, obj));
-                    browserHistory.push('/person');
+                    if (opts.redirectOnSuccess) {
+                        browserHistory.push(opts.redirectOnSuccess);
+                    }
                 },
                 error => {
                     dispatch({
-                        type: ACTIONS.LOGIN_FAILURE,
+                        type: opts.types.error,
                         error: error.message || 'Default error'
                     });
                 });

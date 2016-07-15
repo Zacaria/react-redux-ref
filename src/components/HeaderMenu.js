@@ -10,29 +10,29 @@ class HeaderMenu extends React.Component {
                 </button>
                 <ul id="onglet-portail">
                     <li id="onglet-accueil">
-                        <a accesskey="accesskeys-tabs" href="https://maestrodev.excilys.com/maestro-portail">Maestro</a>
+                        <a  href="https://maestrodev.excilys.com/maestro-portail">Maestro</a>
                     </li>
                     <li id="onglet-accueil">
-                        <a accesskey="accesskeys-tabs" href="https://maestrodev.excilys.com/maestro-fdt">Maestro-FDT</a>
+                        <a  href="https://maestrodev.excilys.com/maestro-fdt">Maestro-FDT</a>
                     </li>
                     <li id="onglet-accueil">
-                        <a accesskey="accesskeys-tabs" href="https://maestrodev.excilys.com/maestro-ndf">Maestro-NDF</a>
+                        <a  href="https://maestrodev.excilys.com/maestro-ndf">Maestro-NDF</a>
                     </li>
                     <li className="selected" id="onglet-accueil">
-                        <a accesskey="accesskeys-tabs" href="https://maestrodev.excilys.com/maestro-ref">Maestro-Referentiel</a>
+                        <a  href="https://maestrodev.excilys.com/maestro-ref">Maestro-Referentiel</a>
                     </li>
                     <li id="onglet-accueil">
-                        <a accesskey="accesskeys-tabs" href="https://maestrodev.excilys.com/maestro-contrat">Maestro-Contrat</a>
+                        <a  href="https://maestrodev.excilys.com/maestro-contrat">Maestro-Contrat</a>
                     </li>
                     <li id="onglet-accueil">
-                        <a accesskey="accesskeys-tabs" href="https://maestrodev.excilys.com/maestro-facture">Maestro-Facture</a>
+                        <a  href="https://maestrodev.excilys.com/maestro-facture">Maestro-Facture</a>
                     </li>
                     <li id="onglet-accueil">
-                        <a accesskey="accesskeys-tabs"
+                        <a
                            href="https://maestrodev.excilys.com/maestro-cvforge">CV-Forge</a>
                     </li>
                     <li id="onglet-accueil">
-                        <a accesskey="accesskeys-tabs" href="https://maestrodev.excilys.com/maestro-salaire">Maestro-Salaire</a>
+                        <a  href="https://maestrodev.excilys.com/maestro-salaire">Maestro-Salaire</a>
                     </li>
                 </ul>
             </div>

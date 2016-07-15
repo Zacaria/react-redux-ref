@@ -11,9 +11,7 @@ export default class MainForm extends React.Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-lg-3"/>
-                <div className="col-lg-6">
+            <div>
                     <Form
                         onSubmit={values => {
                                                 values.societe={
@@ -25,14 +23,15 @@ export default class MainForm extends React.Component {
                                     delete values['societeid'];
                                     values.adresseCorrespondance= {};
                                     values.adresseResidence= {};
-                                    console.log('edit values :',values)
-                              /*this
+                                    values.id= this.props.id;
+                              this
                                 .props
-                                .dispatch(addPerson(this.props.username, this.props.password, values));*/
+                                .editPerson(this.props.username, this.props.password, values);
                             }}>
                         <Input type="select"
                                label="Civilité"
                                name="civilite"
+                               validation={[]}
                                defaultValue={this.props.personData.civilite}
                         >
                             <option value="">Sélectionner une civilité</option>
@@ -40,7 +39,6 @@ export default class MainForm extends React.Component {
                             <option value="Mme">Mme</option>
                             <option value="Mlle">Mlle</option>
                         </Input>
-
 
                         <Input
                             label="Nom"
@@ -61,15 +59,15 @@ export default class MainForm extends React.Component {
                             className="form-control"
                             name="societeid"
                             label="Société"
+                            validation={[]}
                             defaultValue={this.props.personData.societe.id}
 
                         >
                             <option value="">Sélectionner une société</option>
                             {  Object.keys(this.props.listSociete).map(
                                 (id) => {
-                                    return (<option value={id}>{this.props.listSociete[id]}</option>)
+                                    return (<option key={"societe"+id} value={id}>{this.props.listSociete[id]}</option>)
                                 })}
-
                         </Input>
 
                         <Input
@@ -77,7 +75,6 @@ export default class MainForm extends React.Component {
                             name="matricule"
                             validation={["require"]}
                             defaultValue={this.props.personData.matricule}
-
                         />
 
                         <Input
@@ -93,14 +90,16 @@ export default class MainForm extends React.Component {
                             name="qualite"
                             validation={[]}
                             defaultValue={this.props.personData.qualite}
-
                         />
-                        <button className="btn btn-primary" type="submit">
+
+                        <button className="btn btn-primary" type="submit" disabled={this.props.detailsProcessing}>
                             Editer
                         </button>
+                        {(this.props.Edited === this.props.propKey) ? <span className="alert alert-success"> Edité</span> : ""}
+                        {(this.props.Error.key === this.props.propKey) ? <span className="alert alert-danger"> {this.props.Error.msg}</span> : ""}
+
                     </Form>
                 </div>
-            </div>
         )
     }
 }

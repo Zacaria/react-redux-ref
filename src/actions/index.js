@@ -1,7 +1,7 @@
 import tableActions from './tableActions'
 import authentification from './authenticationAction'
 import {addPerson, listSociete} from './addPersonAction'
-import {loadPersonData} from './editPersonAction'
+import {loadPersonData, editPerson, editAddress, editContact} from './editPersonAction'
 
 
 function resetErrorMessage() {
@@ -13,7 +13,10 @@ export {
     resetErrorMessage,
     addPerson,
     listSociete,
-    loadPersonData
+    loadPersonData,
+    editPerson,
+    editAddress,
+    editContact
 }
 
 

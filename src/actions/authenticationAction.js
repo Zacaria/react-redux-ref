@@ -9,6 +9,7 @@ import {  browserHistory } from 'react-router'
 
 const apiLogProps = {
     url: constants.URL_LOGIN,
+    
     types: {
         request: actionTypes.LOGIN,
         receive: actionTypes.LOGIN_SUCCESS

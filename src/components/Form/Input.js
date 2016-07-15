@@ -103,7 +103,7 @@ class Input extends React.Component {
                 return (
                     <div className={this.state.classCss}>
                         <label>{this.props.label}</label>
-                        <select {...this.props} className='form-control' ref="input" key="input"
+                        <select defaultValue={this.props.defaultValue} className='form-control' ref="input" key="input"
                         >
                             {this.props.children}
                         </select>
@@ -114,8 +114,9 @@ class Input extends React.Component {
                     <div className={this.state.classCss}>
                         {this.props.label}
                         <input
-                            {...this.props}
+                            type="checkbox"
                             className="form-control"
+                            defaultChecked={this.props.defaultChecked}
                             onChange={()=> this.validate()}
                             ref="input"
                         />
@@ -127,7 +128,7 @@ class Input extends React.Component {
                     <div className={this.state.classCss}>
                         <label>{this.props.label}</label>
                         <input
-                            {...this.props}
+                            defaultValue={this.props.defaultValue}
                             className="form-control"
                             onChange={()=> this.validate()}
                             ref="input"
